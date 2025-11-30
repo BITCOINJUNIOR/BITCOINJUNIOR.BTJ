@@ -231,7 +231,36 @@ h1 {
 }
 
 /* Responsive */
+.pillars {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
 
+.pillars-grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.pillar-card {
+    padding: 14px 14px 16px;
+    border-radius: 14px;
+    background: radial-gradient(circle at top left,
+        rgba(255, 255, 255, 0.06),
+        rgba(3, 5, 15, 0.96));
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: 0.92;
+}
+
+.pillar-card h3 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
 @media (max-width: 720px) {
 
     .nav-inner {
