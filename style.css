@@ -262,7 +262,9 @@ h1 {
     text-transform: uppercase;
 }
 @media (max-width: 720px) {
-
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
     .nav-inner {
         padding-inline: 14px;
         gap: 8px;
