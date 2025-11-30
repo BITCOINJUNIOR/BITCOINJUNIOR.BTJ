@@ -104,6 +104,9 @@ main {
     box-shadow:
         0 28px 80px rgba(0, 0, 0, 0.8),
         0 0 0 1px rgba(255, 255, 255, 0.02);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: heroFadeIn 0.8s ease-out forwards;
 }
 
 .logo {
@@ -260,6 +263,16 @@ h1 {
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 @media (max-width: 720px) {
     .pillars-grid {
