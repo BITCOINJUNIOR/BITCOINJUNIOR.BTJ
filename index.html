@@ -1,134 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bitcoin Junior (BTJ)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Basic meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Basic meta -->
-    <meta name="description" content="Bitcoin Junior (BTJ) – a Bitcoin-inspired, people-focused experiment in fair distribution, scarcity, and community-powered rules.">
+  <title>Bitcoin Junior (BTJ) – Bitcoin-inspired, time-based fair distribution</title>
 
-    <!-- Open Graph / preview -->
-    <meta property="og:title" content="Bitcoin Junior (BTJ)">
-    <meta property="og:description" content="Bitcoin-inspired, people-focused. A long-term experiment in fair distribution, scarcity, and community-powered rules.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.btcjunior.com/">
-    <meta property="og:image" content="https://www.btcjunior.com/assets/logo.png">
+  <meta name="description"
+        content="Bitcoin Junior (BTJ) is a Bitcoin-inspired token with a 21B hard cap, time-based fair distribution and a symbolic multi-asset treasury designed to resist whales, governments and short-term greed." />
 
-    <!-- Favicon  -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="canonical" href="https://btcjunior.com/" />
 
-    <link rel="stylesheet" href="style.css">
+  <!-- Open Graph (for X, Telegram, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bitcoin Junior (BTJ)" />
+  <meta property="og:description"
+        content="Bitcoin-inspired token with a 21B hard cap, long-term fair distribution and a symbolic multi-asset treasury. No VC, no premine." />
+  <meta property="og:url" content="https://btcjunior.com/" />
+  <!-- TODO: point this to your real logo/banner path -->
+  <meta property="og:image" content="https://btcjunior.com/assets/btj-logo.png" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin Junior (BTJ)" />
+  <meta name="twitter:description"
+        content="Bitcoin-inspired, people-focused. Time-based fair distribution with a symbolic multi-asset treasury." />
+  <meta name="twitter:site" content="@BitcoinjuniorBT" />
+  <meta name="twitter:image" content="https://btcjunior.com/assets/btj-logo.png" />
+
+  <!-- Favicon (optional, can be adjusted later) -->
+  <!-- TODO: update href when you add a real favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Minimal reset & layout (no heavy CSS framework) -->
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #f5c948;
+      --accent-soft: rgba(245, 201, 72, 0.12);
+      --text: #f5f5f7;
+      --muted: #a0a4b8;
+      --border: #1c2238;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top, #101632 0, #050816 55%, #02030a 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.9), rgba(5, 8, 22, 0.7));
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0b1020;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    .hero {
+      padding: 2rem 1.25rem 2.5rem;
+      margin: 0 -1.25rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(245, 201, 72, 0.12), transparent 55%);
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 201, 72, 0.35);
+      background: rgba(5, 8, 22, 0.85);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(245, 201, 72, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 5vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin: 0 0 0.8rem;
+    }
+
+    .hero-subtitle {
+      max-width: 640px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(11, 16, 32, 0.95);
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #121216;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #ffe083;
+      border-color: #ffe083;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: rgba(5, 8, 22, 0.9);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn span.emoji {
+      font-size: 1rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1.75rem 1.25rem;
+      border-radius: 1.1rem;
+      border: 1px solid var(--border);
+      background: rgba(5, 8, 22, 0.9);
+    }
+
+    section:nth-of-type(odd) {
+      background: linear-gradient(145deg, rgba(11, 16, 32, 0.98), rgba(5, 8, 22, 0.98));
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+    }
+
+    section p {
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(10, 15, 32, 0.9);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin-top: 0.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    li {
+      font-size: 0.93rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-muted {
+      padding: 0.9rem 1rem;
+      border-radius: 0.9rem;
+      background: var(--accent-soft);
+      border: 1px solid rgba(245, 201, 72, 0.25);
+      font-size: 0.85rem;
+      color: #fbecc1;
+    }
+
+    .roadmap-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .roadmap-item strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .links-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .links-list a {
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(10, 14, 28, 0.9);
+      color: var(--muted);
+    }
+
+    .links-list a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem 2rem;
+      background: #050816;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        padding-inline: 1rem;
+      }
+
+      .hero {
+        padding-inline: 1rem;
+      }
+
+      section {
+        padding-inline: 1rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Analytics placeholder -->
+  <!-- TODO: Paste your analytics script (e.g. Plausible/Umami/GA) here when ready -->
 </head>
 <body>
-<header class="nav">
-    <div class="nav-inner">
-        <div class="nav-left">
-            <img src="assets/logo.png" alt="Bitcoin Junior Logo" class="nav-logo">
-            <span class="nav-brand">Bitcoin Junior (BTJ)</span>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <!-- TODO: update src when you add a small logo file -->
+          <img src="/assets/btj-logo-square.png" alt="Bitcoin Junior logo" />
         </div>
-        <nav class="nav-links">
-            <a href="#hero">Overview</a>
-            <a href="#why">Why BTJ</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <span>Bitcoin Junior (BTJ)</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#what-is-btj">What is BTJ?</a>
+        <a href="#distribution">Distribution</a>
+        <a href="#treasury">Treasury</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#links">Links</a>
+      </nav>
     </div>
-</header>
+  </header>
 
-<main>
-    <!-- Hero -->
-    <section id="hero" class="hero">
-        <div class="hero-card">
-            <img src="assets/logo.png" alt="Bitcoin Junior Logo" class="logo">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Bitcoin-inspired · People-focused · Long-term</span>
+      </div>
+      <h1 class="hero-title">
+        Bitcoin Junior (BTJ)
+      </h1>
+      <p class="hero-subtitle">
+        A Bitcoin-inspired, people-focused token with a fixed 21B supply, time-based fair distribution and a symbolic
+        multi-asset treasury – designed to resist whales, governments and short-term greed.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/whitepaper/bitcoin-junior-overview.pdf">
+          <span class="emoji">📄</span>
+          <span>Download whitepaper (PDF)</span>
+        </a>
+        <a class="btn btn-outline" href="#distribution">
+          <span>See how distribution works</span>
+        </a>
+        <a class="btn btn-outline" href="https://x.com/BitcoinjuniorBT" target="_blank" rel="noopener noreferrer">
+          <span class="emoji">𝕏</span>
+          <span>Follow updates on X</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-            <h1>BITCOIN JUNIOR (BTJ)</h1>
-            <p class="tagline">
-                Bitcoin-inspired, people-focused. An independent experiment in hard money design,
-                fairer distribution, and defence against heavy market manipulation.
-            </p>
-
-            <a href="assets/btj-whitepaper.pdf" class="btn" target="_blank">
-                Download Whitepaper (PDF)
-            </a>
+  <main>
+    <section id="what-is-btj">
+      <h2>What is Bitcoin Junior (BTJ)?</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Bitcoin Junior (BTJ) is a next-generation, Bitcoin-inspired system that takes the original hard-money
+            spirit seriously – but is tuned for today’s environment: faster innovation on higher layers, structural
+            anti-inflation, and behavioral security against whales and heavy market manipulation.
+          </p>
+          <p>
+            BTJ is not here to “replace” Bitcoin. It is an independent experiment in:
+          </p>
+          <ul>
+            <li>time-based, rule-driven token distribution</li>
+            <li>keeping power away from a few early insiders and whales</li>
+            <li>using an on-chain multi-asset treasury as symbolic backing – not as a redeemable fund</li>
+          </ul>
         </div>
-    </section>
-    <!-- Design pillars -->
-    <section class="section pillars">
-        <h2>Design Pillars</h2>
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <h3>Fair(er) Distribution</h3>
-                <p>
-                    Long-term cycles instead of a single sale. Real users and coordinated groups
-                    matter more than pure capital and multi-wallet abuse.
-                </p>
-            </div>
-            <div class="pillar-card">
-                <h3>Time & Scarcity</h3>
-                <p>
-                    Strict supply cap, non-inflationary logic, and slow release over many periods
-                    so BTJ can be measured in years, not one hype season.
-                </p>
-            </div>
-            <div class="pillar-card">
-                <h3>Behavioural Security</h3>
-                <p>
-                    Designed with whales, bears, and manipulation in mind – trying to make obvious
-                    abuse harder without freezing out serious participants.
-                </p>
-            </div>
+        <div>
+          <div class="card-muted">
+            <strong>Key properties</strong>
+            <ul>
+              <li>Fixed 21,000,000,000 BTJ hard cap</li>
+              <li>No VC allocation, no premine</li>
+              <li>Distribution stretched across decades</li>
+              <li>Focus on real users, not only early speculators</li>
+            </ul>
+          </div>
+          <div class="pill-list">
+            <span class="pill">Bitcoin-inspired</span>
+            <span class="pill">Hard cap: 21B BTJ</span>
+            <span class="pill">Anti-whale design</span>
+            <span class="pill">Symbolic treasury</span>
+          </div>
         </div>
-    </section>
-    <!-- Why BTJ -->
-    <section id="why" class="section">
-        <h2>Why “Bitcoin Junior”?</h2>
-        <p class="section-subtitle">
-            Bitcoin Junior is not here to replace Bitcoin. It is meant to be a next-generation,
-            Bitcoin-inspired system built on the same core spirit:
-        </p>
-        <ul class="points">
-            <li>Money without governments and central banks.</li>
-            <li>Rules instead of rulers.</li>
-            <li>Time, scarcity, and open consensus instead of promises.</li>
-        </ul>
-        <p class="section-note">
-            BTJ also tries to be more tuned for today’s world: faster on innovation, more aware of
-            behavioural risks, and structurally anti-inflationary in how supply and distribution work.
-        </p>
+      </div>
     </section>
 
-    <!-- Roadmap & Contact -->
-    <section id="roadmap" class="section">
-        <h2>Roadmap – Very Early View</h2>
-        <ol class="roadmap-list">
-            <li><strong>Design & Discussion:</strong> iterate on the whitepaper, tokenomics, and distribution logic with public feedback.</li>
-            <li><strong>Prototype & Launch:</strong> deploy the initial BTJ token on a host chain and start early distribution cycles.</li>
-            <li><strong>Build the Ecosystem:</strong> non-custodial wallet, dashboards, and community tools – and only later, if justified, explore a dedicated BTJ chain or rollup.</li>
-        </ol>
+    <section id="distribution">
+      <h2>Distribution model – branches &amp; blocks</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            BTJ is distributed through a series of 10-day “branches”. In each branch, users lock BTJ in small
+            cooperative “blocks” – groups of 3, 6, 9, … people. A long series of 21M blocks stretches distribution
+            across decades and makes multi-wallet abuse progressively more expensive.
+          </p>
+          <p>
+            Instead of a one-shot ICO/IDO, supply is released over time through these branches and blocks, with a
+            clear rule-set that can be independently audited and simulated.
+          </p>
+          <ul>
+            <li>Phase A: early participation &amp; social activity → small share of supply</li>
+            <li>Phase B: new BTJ only from branches + controlled presale per 10-day cycle</li>
+            <li>No “instant full unlock” event that rewards only the earliest insiders</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card-muted">
+            <strong>Why this structure?</strong>
+            <ul>
+              <li>joins are human-sized, not whale-sized</li>
+              <li>time and participation matter more than pure capital</li>
+              <li>multi-wallet farming becomes costly as branches progress</li>
+            </ul>
+          </div>
+          <p>
+            The official BTJ dApp will show branches, blocks and rewards clearly, and will always separate
+            <strong>available</strong> vs <strong>locked</strong> balances so users can see how and when their BTJ
+            moves through the system.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="section section-small">
-        <h2>Contact</h2>
-        <p>
-            For project-related communication only:
-            <br>
-            <a href="mailto:BITCOINJUNIOR.BTJ@proton.me" class="link-inline">
-                BITCOINJUNIOR.BTJ@proton.me
-            </a>
-        </p>
+    <section id="treasury">
+      <h2>Treasury &amp; security</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            BTJ uses a multi-asset on-chain treasury funded mainly from presales. This treasury is <strong>not</strong>
+            team money and <strong>not</strong> a redeemable “backing vault” in the stablecoin sense. It is a
+            transparent, symbolic backing for the long-term spirit of the project.
+          </p>
+          <p>
+            Under normal conditions, no one can withdraw from the treasury. Any emergency dissolution path must be
+            extremely hard to trigger and require a super-majority of the alive community (&gt;95% of votes from active
+            wallets).
+          </p>
+        </div>
+        <div>
+          <div class="card-muted">
+            <strong>Security expectations</strong>
+            <ul>
+              <li>rules over rulers – on-chain, auditable constraints</li>
+              <li>separation between protocol, treasury and team operations</li>
+              <li>long-term defense against heavy market manipulation</li>
+            </ul>
+          </div>
+          <p>
+            More detailed specifications, simulations and security analyses will be published as the protocol and
+            distribution contracts move from design into implementation.
+          </p>
+        </div>
+      </div>
     </section>
-</main>
 
-<footer class="footer">
-    <div class="footer-left">
-        © 2025 Bitcoin Junior (BTJ). All rights reserved.
+    <section id="roadmap">
+      <h2>Roadmap (high-level)</h2>
+      <div class="grid-2">
+        <div>
+          <div class="roadmap-item">
+            <strong>Phase 0 – Design &amp; modeling</strong>
+            <p>Whitepaper iterations, Python modeling of branches/blocks, treasury rules and long-term supply curves.</p>
+          </div>
+          <div class="roadmap-item">
+            <strong>Phase 1 – Testnet &amp; dApp prototype</strong>
+            <p>Deploy testnet contracts, launch the non-custodial dApp that shows branches, blocks and balances.</p>
+          </div>
+          <div class="roadmap-item">
+            <strong>Phase 2 – Mainnet launch (early branches)</strong>
+            <p>Start initial branches on mainnet with conservative parameters and a focus on transparency and audits.</p>
+          </div>
+        </div>
+        <div>
+          <div class="roadmap-item">
+            <strong>Phase 3 – Ecosystem &amp; integrations</strong>
+            <p>Wallet integrations, tools, dashboards and community-led experiments on top of BTJ’s distribution layer.</p>
+          </div>
+          <div class="roadmap-item">
+            <strong>Phase 4 – Governance hardening</strong>
+            <p>Refine community voting, emergency rules and long-term stewardship, based on real-world behavior.</p>
+          </div>
+          <p>
+            This roadmap is intentionally high-level and will evolve as the design is refined and real usage appears.
+            There are no promises of returns – only a commitment to transparent, auditable rules.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="links">
+      <h2>Official links</h2>
+      <p>
+        Always verify that you are using the correct domain and official links. Bitcoin Junior will not DM you for
+        funds, private keys or “special deals”.
+      </p>
+      <div class="links-list">
+        <a href="https://btcjunior.com" aria-label="Official website">🌐 Website</a>
+        <a href="https://x.com/BitcoinjuniorBT" target="_blank" rel="noopener noreferrer" aria-label="X profile">
+          𝕏 @BitcoinjuniorBT
+        </a>
+        <a href="mailto:bitcoinjunior.btj@proton.me" aria-label="Contact email">✉️ Contact</a>
+        <!-- TODO: update when GitHub org/repo is ready -->
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          💻 GitHub (soon)
+        </a>
+        <a href="/whitepaper/bitcoin-junior-overview.pdf" aria-label="Whitepaper PDF">📄 Whitepaper (PDF)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Bitcoin Junior (BTJ). All rights reserved.</div>
+      <div class="footer-links">
+        <span>Bitcoin-inspired. Rules over rulers.</span>
+      </div>
     </div>
-    <div class="footer-right">
-        <span class="footer-disclaimer">
-            No investment advice. Experimental crypto project.
-        </span>
-    </div>
-</footer>
+  </footer>
+
+  <script>
+    // Simple year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
