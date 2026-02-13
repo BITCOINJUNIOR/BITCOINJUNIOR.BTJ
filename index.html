@@ -624,5 +624,29 @@
     }
   })();
 </script>
+<script>
+(async function () {
+  try {
+    const r = await fetch("https://api.btcjunior.com/api/me", {
+      method: "GET",
+      credentials: "include",
+    });
+    const j = await r.json();
+
+    if (j && j.ok) {
+      const banner = document.getElementById("joinedBanner");
+      if (banner) banner.style.display = "block";
+
+      const cta = document.querySelector(".btj-auth-cta");
+      if (cta) {
+        cta.innerHTML = `<div class="btj-joined-pill">✅ Wallet connected</div>`;
+      }
+
+      if (location.hash === "#joined") history.replaceState(null, "", location.pathname);
+    }
+  } catch (e) {
+  }
+})();
+</script>
 </body>
 </html>
