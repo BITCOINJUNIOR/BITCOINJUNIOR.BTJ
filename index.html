@@ -382,6 +382,19 @@
   <!-- TODO: Paste your analytics script here when ready -->
 </head>
 <body>
+  <!-- BTJ Auth CTA (redirect flow) -->
+  <div class="btj-auth-cta">
+    <a class="btj-auth-btn"
+       href="https://api.btcjunior.com/?return_to=https%3A%2F%2Fwww.btcjunior.com%2F%23joined">
+      Join / Connect Wallet
+    </a>
+    <span class="btj-auth-hint">Sign once to create your identity for future rewards.</span>
+  </div>
+
+  <div id="joinedBanner" class="btj-joined-banner" style="display:none;">
+    ✅ Wallet connected. You are now joined.
+  </div>
+  <!-- /BTJ Auth CTA -->
   <header>
     <div class="nav">
       <div class="nav-left">
@@ -603,9 +616,17 @@
     </div>
   </footer>
 
-  <script>
-    // Simple year update
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+ <script>
+  // Simple year update
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Show joined banner after redirect back
+  (function () {
+    if (location.hash === "#joined") {
+      const el = document.getElementById("joinedBanner");
+      if (el) el.style.display = "block";
+    }
+  })();
+</script>
 </body>
 </html>
